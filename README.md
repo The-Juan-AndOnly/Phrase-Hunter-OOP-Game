@@ -2,11 +2,7 @@
 
 ## A game to test your wits. Can you solve the puzzle before you run out of lives?
 
----
-
 Instructions
-
----
 
 - Download Project and Run on local machine or click on [link]("/")
 - Click on start
