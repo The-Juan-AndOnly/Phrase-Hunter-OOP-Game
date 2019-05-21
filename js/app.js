@@ -1,19 +1,32 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * app.js */
+/*
+  Global Variables
+*/
 
-//clicking "Start Gane" creates new Game object
-
-// clicking on onscreen buton results to the handleInteraction() method
-
-// clicking on spaces between and around the onscreen
-// keyboard does not result in handleInteraction() being called
-
-// After game is complete the gameboard reset so that clicking "Start" clears board and starts new game
+const newGame = new Game();
+const phrase = new Phrase();
+const keyboard = [...document.querySelectorAll('#qwerty .key')]; //Array of keyboard keys
 const startButton = document.querySelector('#btn__reset');
-startButton.addEventListener('click', () => {
-  const newGame = new Game();
 
+/*
+  Event Handlers
+*/
+
+keyboard.map(key =>
+  key.addEventListener('click', e => {
+    // clicking on onscreen buton results to the handleInteraction() method
+    newGame.handleInteraction(e.target);
+  })
+);
+
+startButton.addEventListener('click', () => {
+  // Clicking on "Start Game" will make sure that the onscreen keyboard is reset and not disabled
+  keyboard
+    .filter(key => key.hasAttribute('disabled'))
+    .map(k => {
+      k.classList.remove('wrong', 'chosen');
+      k.disabled = false;
+    });
+
+  // newGame.resetGame();
   newGame.startGame();
-  newGame.getRandomPhrase();
 });
