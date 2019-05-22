@@ -30,7 +30,7 @@ class Phrase {
       setTimeout(() => {
         ltr.classList.add('show');
       }, 250 + delay);
-      delay += 250;
+      delay += 100;
     });
   }
 }

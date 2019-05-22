@@ -19,14 +19,5 @@ keyboard.map(key =>
 );
 
 startButton.addEventListener('click', () => {
-  // Clicking on "Start Game" will make sure that the onscreen keyboard is reset and not disabled
-  keyboard
-    .filter(key => key.hasAttribute('disabled'))
-    .map(k => {
-      k.classList.remove('wrong', 'chosen');
-      k.disabled = false;
-    });
-
-  // newGame.resetGame();
-  newGame.startGame();
+  newGame.startGame(); //Start the Game
 });

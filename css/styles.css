@@ -201,12 +201,3 @@ button {
 .lose a {
   color: var(--color-lose);
 }
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}

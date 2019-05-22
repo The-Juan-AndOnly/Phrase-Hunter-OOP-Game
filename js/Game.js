@@ -3,23 +3,21 @@ class Game {
     this.missed = 0;
     this.activePhrase = null;
     this.phrases = [
-      { phrase: 'May the Force be with you' },
-      { phrase: 'I am going to make him an offer he can not refuse' },
-      { phrase: 'Toto I have got a feeling were not in Kansas anymore' },
-      { phrase: 'Show me the money' },
-      {
-        phrase:
-          'Life is like a box of chocolates You never know what you are gonna get'
-      }
+      { phrase: 'The Best Of Both Worlds' },
+      { phrase: 'Speak Of The Devil' },
+      { phrase: 'See Eye To Eye' },
+      { phrase: 'Once In A Blue Moon' },
+      { phrase: 'When Pigs Fly' }
     ];
   }
+  //Start Game & immediately resets it from previous game
   startGame() {
-    document.querySelector('#overlay').style.animation =
-      'fadeOut 1.0s forwards'; //hides Screen Overlay
+    this.resetGame();
+    document.querySelector('#overlay').style.animation = 'fadeOut 1.0s'; //hides Screen Overlay
     setTimeout(() => {
       document.querySelector('#overlay').style.display = 'none';
     }, 1000);
-    this.missed = 0;
+
     this.activePhrase = this.getRandomPhrase(); // sets activePhrase Prop to random phrase
     const newPhrase = new Phrase(this.activePhrase.phrase.toLowerCase());
     newPhrase.addPhraseToDisplay(); // calls Add PhrasetoDisplay() on active phrase
@@ -52,7 +50,7 @@ class Game {
     setTimeout(() => {
       const show = [...document.querySelectorAll('#phrase .letter.show')];
       letters.length === show.length && this.gameOver('win');
-    }, 1000);
+    }, 750);
     // const show = [...document.querySelectorAll('#phrase .letter.show')];
     // letters.length === show.length && this.gameOver('win');
   }
@@ -73,16 +71,35 @@ class Game {
     if (status == 'lost') {
       overlay.classList.remove('start');
       overlay.classList.add('lose');
-      gameOverMessage.textContent = `Sorry Better Luck next time`;
+      gameOverMessage.textContent = `Sorry the Correct Phrase was "${
+        this.activePhrase.phrase
+      }"`;
     } else {
       overlay.classList.remove('start');
       overlay.classList.add('win');
-      gameOverMessage.textContent = `Congrats!! You WON!`;
+      gameOverMessage.innerHTML = `Congrats!! You WON!`;
     }
     //displays Win or Loss message by showing original start screen overlay with ".win" or ".lose" CSS
     overlay.style.animation = 'fadeIn .5s'; //shows Screen Overlay
     setTimeout(() => {
       overlay.style.display = 'flex';
     }, 500);
+  }
+  resetGame() {
+    this.missed = 0;
+    const keyboard = [...document.querySelectorAll('#qwerty .key')];
+    const imgs = [...document.querySelectorAll('#scoreboard .tries img')];
+    const overlay = document.querySelector('#overlay');
+    imgs.map(img => (img.src = '../images/liveHeart.png'));
+    keyboard
+      .filter(key => key.hasAttribute('disabled'))
+      .map(k => {
+        k.classList.remove('wrong', 'chosen');
+        k.disabled = false;
+      });
+    if (!overlay.classList.contains('start')) {
+      overlay.classList.remove('win', 'lose');
+      overlay.classList.add('start');
+    }
   }
 }
