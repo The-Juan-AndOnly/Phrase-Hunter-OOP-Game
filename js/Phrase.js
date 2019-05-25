@@ -11,7 +11,7 @@ class Phrase {
       .map(ltr =>
         ltr.includes(' ')
           ? `<li class="space">${ltr}</li>`
-          : `<li class="letter ${ltr}">${ltr}</li>`
+          : `<li class="letter hide ${ltr}">${ltr}</li>`
       )
       .join('');
     gameboard.innerHTML = gamePhrase; //Add Phrase to gameboard
@@ -21,16 +21,18 @@ class Phrase {
     const phrase = newGame.activePhrase.phrase.toLowerCase().split('');
     return phrase.includes(letter); //Check if letter is in Phrase
   }
-
-  showMatchedLetter(letter) {
-    //Reveal letters that match player selection on a delay for each letter
+  //Reveal letters that match player selection on a delay for each letter will also call the checkForWin through a callback function to see if the game is over
+  showMatchedLetter(letter, callback) {
+    console.log('Waiting');
     const matchedLetter = [...document.querySelectorAll(`.letter.${letter}`)];
     let delay = 0;
     matchedLetter.map(ltr => {
       setTimeout(() => {
+        ltr.classList.remove('hide');
         ltr.classList.add('show');
-      }, 250 + delay);
-      delay += 100;
+        callback();
+      }, 500 + delay);
+      delay += 500;
     });
   }
 }
