@@ -1,11 +1,10 @@
 /*
   Global Variables
 */
-let q = 'q';
+
 const newGame = new Game();
 const phrase = new Phrase();
 const keyboard = [...document.querySelectorAll('.key')]; //Array of keyboard keys
-const keys = keyboard;
 const startButton = document.querySelector('#btn__reset');
 const overlay = document.querySelector('#overlay');
 
