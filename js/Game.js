@@ -17,10 +17,11 @@ class Game {
   //Start Game & immediately resets it from previous game
   startGame() {
     this.resetGame();
-    document.querySelector('#overlay').style.animation = 'fadeOut 1.0s'; //hides Screen Overlay
+    document.querySelector('#overlay').style.animation =
+      'fadeOut 1.0s forwards'; //hides Screen Overlay
     setTimeout(() => {
       document.querySelector('#overlay').style.display = 'none';
-    }, 999);
+    }, 1000);
 
     this.activePhrase = this.getRandomPhrase(); // sets activePhrase Prop to random phrase
     const newPhrase = new Phrase(this.activePhrase.phrase.toLowerCase());
@@ -32,9 +33,9 @@ class Game {
     return this.phrases[randPhrase]; //retrieve one phrase from phrase array
   }
 
-  handleInteraction(button) {
-    const letter = button.textContent;
-    button.setAttribute('disabled', true); //disable selected letters onscreen
+  handleInteraction(letter, button) {
+    button.setAttribute('disabled', true);
+    //disable selected letters onscreen
 
     if (phrase.checkLetter(letter)) {
       // if phrase does contain letter adds ".chosen" to selected letter & checkForWin() & GameOver() if the game is won

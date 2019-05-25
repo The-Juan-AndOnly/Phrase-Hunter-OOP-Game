@@ -23,7 +23,6 @@ class Phrase {
   }
   //Reveal letters that match player selection on a delay for each letter will also call the checkForWin through a callback function to see if the game is over
   showMatchedLetter(letter, callback) {
-    console.log('Waiting');
     const matchedLetter = [...document.querySelectorAll(`.letter.${letter}`)];
     let delay = 0;
     matchedLetter.map(ltr => {
