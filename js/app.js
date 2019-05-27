@@ -12,6 +12,7 @@ const overlay = document.querySelector('#overlay');
   Event Handlers
 */
 
+// Map through the onscreen keys and add an eventListener for each key
 keyboard.map(key =>
   key.addEventListener('click', e => {
     // clicking on onscreen buton results to the handleInteraction() method
@@ -19,7 +20,7 @@ keyboard.map(key =>
   })
 );
 
+// Function that calls startGame when the start button is clicked
 startButton.addEventListener('click', () => {
   newGame.startGame(); //Start the Game
 });
-const pressedKeys = [];
