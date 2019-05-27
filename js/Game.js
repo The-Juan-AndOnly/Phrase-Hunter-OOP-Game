@@ -16,6 +16,9 @@ class Game {
   }
 
   // Start Game & immediately resets it from previous game
+  // FadeOut and remove the overlay
+  // calls getRandomPhrase and assigns returned phrase to activePhrase
+  // calls addPhraseToDisplay
   startGame() {
     this.resetGame();
     document.querySelector('#overlay').style.animation =
