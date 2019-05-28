@@ -68,7 +68,7 @@ class Game {
   removeLife() {
     const tries = [...document.querySelectorAll('#scoreboard .tries img')];
     // remove a life from scoreboard
-    tries[4 - this.missed].src = '/images/lostHeart.png'; //liveHeart is replace with lostHeart
+    tries[4 - this.missed].src = 'images/lostHeart.png'; //liveHeart is replace with lostHeart
     this.missed += 1; //increments missed property
     this.missed === 5 && this.gameOver('lost'); //if player has lost all lives then gameOver() called
   }
@@ -106,7 +106,7 @@ class Game {
     const keyboard = [...document.querySelectorAll('#qwerty .key')];
     const imgs = [...document.querySelectorAll('#scoreboard .tries img')];
     const overlay = document.querySelector('#overlay');
-    imgs.map(img => (img.src = '/images/liveHeart.png')); //reset images
+    imgs.map(img => (img.src = 'images/liveHeart.png')); //reset images
     keyboard
       .filter(key => key.hasAttribute('disabled'))
       .map(k => {
